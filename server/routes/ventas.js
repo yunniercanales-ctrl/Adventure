@@ -72,8 +72,13 @@ router.get("/productos", async(req,res)=>{
 
         const resultado = await sql.query(`
 
-            SELECT *
-            FROM dbo.vw_ProductosMasVendidos
+            SELECT TOP 10
+                p.Name AS ProductName,
+                SUM(d.OrderQty) AS TotalVendidos
+            FROM SalesLT.SalesOrderDetail d
+            JOIN SalesLT.Product p ON d.ProductID = p.ProductID
+            GROUP BY p.Name
+            ORDER BY TotalVendidos DESC
 
         `);
 

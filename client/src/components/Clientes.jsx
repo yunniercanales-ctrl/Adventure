@@ -1,14 +1,27 @@
-{
-clientes.slice(0,10)
-.map((c,index)=>(
+function Clientes({ clientes }) {
 
-<p key={index}>
+    return (
 
-{c.FirstName}
-{" "}
-{c.LastName}
+        <div className="card lista-card">
 
-</p>
+            <h2>
+                Clientes
+            </h2>
 
-))
+            {
+                clientes.slice(0, 10).map((c, index) => (
+
+                    <p key={index}>
+                        {c.FirstName} {c.LastName}
+                    </p>
+
+                ))
+            }
+
+        </div>
+
+    );
+
 }
+
+export default Clientes;
